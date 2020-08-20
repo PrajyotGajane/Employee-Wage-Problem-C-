@@ -2,83 +2,68 @@
 #include <time.h>
 #include <vector>
 #include <fstream>
+#include <ctime>
+#include <unistd.h>
+#include <cstdlib>
+
 using namespace std;
-int checkAttendance();
-int wageCalculator(int);
-void addEmployeeDataCSV();
-int wagePerHour = 20;
-const int totalWorkingDays = 20;
-const int totalWorkingHours = 100;
-vector<int> employeeWageMonth;
+void writeEmployeeDataCSV();
+vector<int> monthlyWages;
+
+void writeEmployeeDataCSV() {
+    ofstream employeeFile;
+    employeeFile.open("EmployeeData.csv", ios::out | ios::trunc);
+    employeeFile << "ID" << ", " << "Montly_Wage" << endl;
+    for (int i = 0; i < monthlyWages.size(); i++){
+        employeeFile << "Emplyee_ID " << (i + 1) << ", " << monthlyWages[i] << endl;
+    }
+}
+
+int getEmployeeHours() {
+    const int IS_PART_TIME = 1;
+    const int IS_FULL_TIME = 2;
+    const int NUM_OF_WORKING_DAYS = 20;
+    const int MAX_HRS_IN_MONTH = 100;
+   
+    int empHrs = 0;
+    int totalEmpHrs = 0;
+    int totalWorkingDays = 0;
+    
+    while(totalEmpHrs <= MAX_HRS_IN_MONTH && totalWorkingDays <= NUM_OF_WORKING_DAYS)
+    {
+        totalWorkingDays++;
+        int empCheck = rand() % 3;
+        switch(empCheck)
+        {
+            case IS_PART_TIME:
+                empHrs = 4;
+                break;
+            case IS_FULL_TIME:
+                empHrs = 8;
+                break;
+            default:
+                empHrs = 0;
+                break;
+        }
+        totalEmpHrs += empHrs;
+    }
+    return totalEmpHrs;
+}
+
 
 int main()
 {
     srand(time(NULL));
-    int fullDayHour = 8;
-    int partDayHour = 4;
-    int noWorkDay = 0;
-    int isPresent = 1;
-    int isAbsent = 2;
-    int isPartTime = 1;
-    int isFullTime = 2;
-    int totalWorkingDays = 20;
-    int employeeWage;
-    cout << "\n\n\n------------------------------------\n\n";
-    cout << "\nWelcome to Employee Wage Problem\n"
-         << endl;
-    int workedDays = 0;
-    int workedHours = 0;
-    while (workedDays < totalWorkingDays && workedHours < totalWorkingHours)
+    const int EMP_RATE_PER_HOUR = 20;
+    int totalEmployees;
+    cout << "\nEnter total number of employees. \n";
+    cin >> totalEmployees;
+    for (int i = 0; i < totalEmployees; i++)
     {
-        int decideAttendance = ((rand() % 2) + 1);
-        int decideTypeHours = ((rand() % 2) + 1);
-        if (decideAttendance == isPresent)
-        {
-            cout << "Employee is present" << endl;
-            if (decideTypeHours == isPartTime)
-            {
-                cout << "Part Time wage\n";
-                employeeWage = wageCalculator(partDayHour);
-                workedHours += partDayHour;
-            }
-            else
-            {
-                cout << "Full Time wage\n";
-                employeeWage = wageCalculator(fullDayHour);
-                workedHours += fullDayHour;
-            }
-            cout << "Employees wage for today : " << employeeWage << "\n"
-                 << endl;
-        }
-        else
-        {
-            employeeWage = wageCalculator(noWorkDay);
-            cout << "Employee is absent\n"
-                 << endl;
-        }
-        employeeWageMonth.push_back(employeeWage);
-        workedDays++;
+        int empWage = getEmployeeHours() * EMP_RATE_PER_HOUR;
+        monthlyWages.push_back(empWage);
+        cout << "Monthly Wage for Employee " << (i + 1) << " = " << monthlyWages[i] << endl;
     }
-    int days = 0;
-    for (int &wages : employeeWageMonth)
-    {
-        days++;
-        std::cout << "Day " << days << " - Wage : " << wages << "\n";
-    }
-    addEmployeeDataCSV();
+    writeEmployeeDataCSV();
     return 0;
-}
-
-int wageCalculator(int hoursPassed)
-{
-    return wagePerHour * hoursPassed;
-}
-
-void addEmployeeDataCSV() {
-    ofstream employeeFile;
-    employeeFile.open("EmployeeData.csv", ios::out | ios::app);
-    employeeFile << "Day" << ", " << "Wage" << endl;
-    for (int i = 0; i < employeeWageMonth.size(); i++){
-        employeeFile << (i + 1) << ", " << employeeWageMonth[i] << endl;
-    }
 }
