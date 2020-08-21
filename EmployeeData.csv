@@ -1,4 +1,7 @@
-ID, , Month-1, Month-2, Month-3
-Employee_1, 2080, 1360, 1920
-Employee_2, 1120, 2000, 1840
-Employee_3, 1520, 1520, 1680
+Company, ID, , Month-1, Month-2, Month-3, Month-4
+Jio, Employee_1, 480, 480, 480, 480
+Jio, Employee_2, 560, 480, 480, 480
+Birla, Employee_1, 1760, 1760
+Birla, Employee_2, 1760, 1760
+Birla, Employee_3, 1760, 1760
+Birla, Employee_4, 1920, 1760
