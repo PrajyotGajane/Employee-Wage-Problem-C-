@@ -8,7 +8,7 @@
 
 using namespace std;
 
-int totalEmpHrs;
+int static totalEmpHrs = 0;
 
 struct Company
 {
@@ -70,15 +70,15 @@ void writeEmployeeDataCSV()
     employeeFile.open("EmpMonthlyData.csv", ios::out | ios::trunc);
     if (employeeFile.is_open())
     {
-        employeeFile << "EmpName"
+        employeeFile << "Name"
                      << ", "
-                     << "totalHours"
+                     << "Total-Hours"
                      << ", "
-                     << "monthlyWage"
+                     << "Montly-Wage"
                      << ", "
-                     << "wagePerHour"
+                     << "Wage-Per-Hour"
                      << ", "
-                     << "companyName"
+                     << "Company-Name"
                      << ", " << endl;
         for (auto address = monthlyEmpList.begin(); address != monthlyEmpList.end(); ++address)
         {
