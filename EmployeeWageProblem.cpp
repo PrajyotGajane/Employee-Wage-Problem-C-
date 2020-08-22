@@ -210,6 +210,23 @@ Company * checkCompanyExist(string companyName) {
     return NULL;
 }
 
+bool compareMonthlyWage(EmployeeMonthly* addressOne, EmployeeMonthly* addressTwo) 
+{ 
+    return ( addressOne->monthlyWage < addressTwo->monthlyWage ); 
+}
+
+void sortByMontlyWage()
+{
+    sort(monthlyEmpList.begin(), monthlyEmpList.end(), compareMonthlyWage);
+
+    for (auto address = monthlyEmpList.begin(); address != monthlyEmpList.end(); ++address){
+        cout << "Name : " << (*address)->empName <<endl;
+        cout << "Montly-Wage : " << (*address)->monthlyWage <<endl;
+        cout << "Company-Name :" << (*address)->companyName << endl;
+        cout << "\n" << endl;
+    }
+}
+
 int main()
 {
     string companyName;
@@ -220,7 +237,7 @@ int main()
     while (endKey)
     {
         int choice;
-        cout << "1: Enter new company details 4: Exit" << endl;
+        cout << "1: Enter new company details 2: Sort by montly wage 4: Exit" << endl;
         cin >> choice;
 
         switch (choice)
@@ -256,6 +273,10 @@ int main()
             else {
                 setCompanyObjectDetails(checkCompanyExist(companyName));
             }    
+            break;
+        case 2:   
+            cout << "Sorted by montly wage" << endl;
+            sortByMontlyWage();
             break;
         case 4:
             endKey = false;
