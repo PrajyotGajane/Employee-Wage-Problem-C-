@@ -63,6 +63,7 @@ public:
 
 void companyWageDetails(struct CompanyEmpWage companyDetails)
 {
+    srand(time(NULL));
     int EMP_RATE_PER_HOUR = companyDetails.ratePerHour;
     int totalEmployees;
     int totalMonths;
@@ -75,6 +76,7 @@ void companyWageDetails(struct CompanyEmpWage companyDetails)
         vector<int> monthWages;
         for (int j = 0; j < totalMonths; j++)
         {
+            sleep(1.9);
             int empWage = getEmployeeHours(companyDetails) * EMP_RATE_PER_HOUR;
             monthWages.push_back(empWage);
             cout << "Monthly Wage for Employee " << (employee + 1) << " = " << empWage << endl;
@@ -118,7 +120,6 @@ int getEmployeeHours(struct CompanyEmpWage company)
 
 int main()
 {
-    srand(time(NULL));
     struct CompanyEmpWage companyDetails;
     string companyName;
     int numOfWorkingDays;
