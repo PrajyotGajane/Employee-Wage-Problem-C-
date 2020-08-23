@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Rahul, 1, 20, 8, 160, 1, Jio
 Rahul, 2, 20, 8, 160, 1, Jio
 Rahul, 3, 20, 4, 80, 1, Jio
@@ -98,3 +99,46 @@ Nikhil, 17, 50, 8, 400, 1, Birla
 Nikhil, 18, 50, 0, 0, 1, Birla
 Nikhil, 19, 50, 0, 0, 1, Birla
 Nikhil, 20, 50, 8, 400, 1, Birla
+=======
+Name, Day, Wage-Per-Hour, Hours, Wage,Month,Total-Wage,Company-Name
+Rahul, 1, 20, 8, 160, 1, 160, Jio
+Rahul, 2, 20, 8, 160, 1, 320, Jio
+Rahul, 3, 20, 4, 80, 1, 400, Jio
+Rahul, 4, 20, 4, 80, 1, 480, Jio
+Rahul, 5, 20, 8, 160, 1, 640, Jio
+Rahul, 6, 20, 4, 80, 1, 720, Jio
+Rahul, 7, 20, 0, 0, 1, 720, Jio
+Rahul, 8, 20, 0, 0, 1, 720, Jio
+Rahul, 9, 20, 4, 80, 1, 800, Jio
+Rahul, 10, 20, 8, 160, 1, 960, Jio
+Rahul, 11, 20, 8, 160, 1, 1120, Jio
+Rahul, 12, 20, 8, 160, 1, 1280, Jio
+Rahul, 13, 20, 4, 80, 1, 1360, Jio
+Rahul, 14, 20, 0, 0, 1, 1360, Jio
+Rahul, 15, 20, 4, 80, 1, 1440, Jio
+Rahul, 16, 20, 8, 160, 1, 1600, Jio
+Rahul, 17, 20, 4, 80, 1, 1680, Jio
+Rahul, 18, 20, 8, 160, 1, 1840, Jio
+Rahul, 19, 20, 0, 0, 1, 1840, Jio
+Rahul, 20, 20, 0, 0, 1, 1840, Jio
+Srijan, 1, 20, 0, 0, 1, 0, Jio
+Srijan, 2, 20, 0, 0, 1, 0, Jio
+Srijan, 3, 20, 8, 160, 1, 160, Jio
+Srijan, 4, 20, 0, 0, 1, 160, Jio
+Srijan, 5, 20, 4, 80, 1, 240, Jio
+Srijan, 6, 20, 4, 80, 1, 320, Jio
+Srijan, 7, 20, 0, 0, 1, 320, Jio
+Srijan, 8, 20, 8, 160, 1, 480, Jio
+Srijan, 9, 20, 8, 160, 1, 640, Jio
+Srijan, 10, 20, 8, 160, 1, 800, Jio
+Srijan, 11, 20, 8, 160, 1, 960, Jio
+Srijan, 12, 20, 0, 0, 1, 960, Jio
+Srijan, 13, 20, 8, 160, 1, 1120, Jio
+Srijan, 14, 20, 0, 0, 1, 1120, Jio
+Srijan, 15, 20, 0, 0, 1, 1120, Jio
+Srijan, 16, 20, 4, 80, 1, 1200, Jio
+Srijan, 17, 20, 8, 160, 1, 1360, Jio
+Srijan, 18, 20, 4, 80, 1, 1440, Jio
+Srijan, 19, 20, 4, 80, 1, 1520, Jio
+Srijan, 20, 20, 0, 0, 1, 1520, Jio
+>>>>>>> master

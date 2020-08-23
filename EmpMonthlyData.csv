@@ -1,6 +1,12 @@
+<<<<<<< HEAD
 EmpName, totalHours, monthlyWage, wagePerHour, companyName, 
 Rahul, 92, 1840, 20, Jio
 Ankit, 76, 1520, 20, Jio
 Srijan, 80, 4000, 50, Birla
 Aniket, 80, 4000, 50, Birla
 Nikhil, 84, 4200, 50, Birla
+=======
+Name, Total-Hours, Montly-Wage, Wage-Per-Hour, Company-Name
+Rahul, 92, 1840, 20, Jio
+Srijan, 76, 1520, 20, Jio
+>>>>>>> master
