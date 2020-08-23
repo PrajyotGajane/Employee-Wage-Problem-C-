@@ -250,6 +250,11 @@ bool compareMonthlyWage(EmpMonthlyDetails *addressOne, EmpMonthlyDetails *addres
     return (addressOne->monthlyWage < addressTwo->monthlyWage);
 }
 
+bool compareDailyWage(EmpDailyDetails *addressOne, EmpDailyDetails *addressTwo)
+{
+    return (addressOne->wage < addressTwo->wage);
+}
+
 void sortByMontlyWage()
 {
     sort(monthlyEmpList.begin(), monthlyEmpList.end(), compareMonthlyWage);
@@ -264,6 +269,19 @@ void sortByMontlyWage()
     }
 }
 
+void sortByDailyWage()
+{
+    sort(dailyEmpList.begin(), dailyEmpList.end(), compareDailyWage);
+    for (auto address = dailyEmpList.begin(); address != dailyEmpList.end(); ++address)
+    {
+        cout << "Name : " << (*address)->empName << endl;
+        cout << "Montly-Wage : " << (*address)->wage << endl;
+        cout << "Company-Name :" << (*address)->companyName << endl;
+        cout << "\n"
+             << endl;
+    }
+    
+}
 void getCompanyDetails()
 {
     string companyName;
@@ -314,7 +332,7 @@ int main()
     while (endKey)
     {
         int choice;
-        cout << "1: Enter new company details  2: Sort by montly wage  3: Employee wage per hour=50  4: Exit  5: View Company Total Wage" << endl;
+        cout << "1: Enter new company details  2: Sort by montly wage  3: Sort by daily wage  4: Exit  5: View Company Total Wage " << endl;
         cin >> choice;
 
         switch (choice)
@@ -324,6 +342,9 @@ int main()
             break;
         case 2:
             sortByMontlyWage();
+            break;
+        case 3:
+            sortByDailyWage();
             break;
         case 4:
             endKey = false;
