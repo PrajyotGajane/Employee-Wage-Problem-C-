@@ -2,6 +2,14 @@
     "files.associations": {
         "iostream": "cpp",
         "ostream": "cpp",
-        "iosfwd": "cpp"
+        "iosfwd": "cpp",
+        "algorithm": "cpp",
+        "*.tcc": "cpp",
+        "deque": "cpp",
+        "memory": "cpp",
+        "list": "cpp",
+        "queue": "cpp",
+        "utility": "cpp",
+        "vector": "cpp"
     }
 }

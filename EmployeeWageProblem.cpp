@@ -10,7 +10,7 @@ using namespace std;
 
 int totalEmpHrs;
 
-struct Company
+struct CompanyDetails
 {
     string companyName;
     int wagePerHour;
@@ -18,7 +18,7 @@ struct Company
     int maxHours;
 };
 
-struct EmployeeDaily
+struct EmpDailyDetails
 {
     string empName;
     int dayNo;
@@ -30,7 +30,7 @@ struct EmployeeDaily
     string companyName;
 };
 
-struct EmployeeMonthly
+struct EmpMonthlyDetails
 {
     string empName;
     int wagePerHour;
@@ -40,9 +40,9 @@ struct EmployeeMonthly
     string companyName;
 };
 
-vector<EmployeeMonthly *> monthlyEmpList;
-vector<EmployeeDaily *> dailyEmpList;
-vector<Company *> companyList;
+vector<EmpMonthlyDetails *> monthlyEmpList;
+vector<EmpDailyDetails *> dailyEmpList;
+vector<CompanyDetails *> companyList;
 
 void writeEmployeeDataDailyCSV()
 {
@@ -137,10 +137,10 @@ int getDailyEmployeeHours()
     return empHrs;
 }
 
-void employeeMonthly(Company company, string empName)
+void employeeMonthly(CompanyDetails company, string empName)
 {
-    EmployeeMonthly *emp;
-    emp = new EmployeeMonthly;
+    EmpMonthlyDetails *emp;
+    emp = new EmpMonthlyDetails;
     emp->empName = empName;
     emp->totalHours = getMonthlyEmployeeHours();
     emp->monthlyWage = emp->totalHours * company.wagePerHour;
@@ -151,7 +151,7 @@ void employeeMonthly(Company company, string empName)
     writeEmployeeDataCSV();
 }
 
-void employeeDaily(Company company)
+void employeeDaily(CompanyDetails company)
 {
     string empName;
     cout << "Enter Employee name " << endl;
@@ -162,11 +162,12 @@ void employeeDaily(Company company)
     totalEmpHrs = 0;
     int totalWorkingDays = 0;
     int totalWage = 0;
+    
     while (totalEmpHrs <= MAX_HRS_IN_MONTH && totalWorkingDays < NUM_OF_WORKING_DAYS)
     {
         totalWorkingDays++;
-        EmployeeDaily *empDaily;
-        empDaily = new EmployeeDaily;
+        EmpDailyDetails *empDaily;
+        empDaily = new EmpDailyDetails;
         empDaily->empName = empName;
         empDaily->dayNo = totalWorkingDays;
         empDaily->hours = getDailyEmployeeHours();
@@ -192,19 +193,18 @@ void display()
     }
 }
 
-void setCompanyObjectDetails(Company *company)
+void setCompanyObjectDetails(CompanyDetails *company)
 {
     bool endKey = true;
 
     while (endKey)
     {
         int choice;
-        cout << "\n1) Enter employee name 2) Display 4) Exit : ";
+        cout << "\n1) Enter employee name  2) Display  4) Exit : ";
         cin >> choice;
         switch (choice)
         {
         case 1:
-
             employeeDaily(*company);
             break;
         case 2:
@@ -220,7 +220,20 @@ void setCompanyObjectDetails(Company *company)
     }
 }
 
-Company *checkCompanyExist(string companyName)
+void getTotalWageCompany(string companyName)
+{
+    int totalWage = 0;
+    for (auto *itr : monthlyEmpList)
+    {
+        if (itr->companyName == companyName)
+        {
+            totalWage += itr->monthlyWage;
+        }
+    }
+    cout << "Total Wage of Company : " << companyName << " is : " << totalWage << endl;
+}
+
+CompanyDetails *checkCompanyExist(string companyName)
 {
     for (auto *itr : companyList)
     {
@@ -232,58 +245,68 @@ Company *checkCompanyExist(string companyName)
     return NULL;
 }
 
-int main()
+void getCompanyDetails()
 {
     string companyName;
     int rate;
     int workingDays;
     int maxHours;
+    cout << "Enter the details of the company\n" << endl;
+    cout << "Enter the name of company" << endl;
+    cin >> companyName;
+
+    if (checkCompanyExist(companyName) != NULL)
+    {
+        cout << "Company already present\n" << endl;
+        return;
+    }
+
+    cout << "Enter the wage per hours of company" << endl;
+    cin >> rate;
+    cout << "Enter the working day of company" << endl;
+    cin >> workingDays;
+    cout << "Enter the max hours of company" << endl;
+    cin >> maxHours;
+
+    CompanyDetails *company;
+    company = new CompanyDetails;
+    company->companyName = companyName;
+    company->wagePerHour = rate;
+    company->workingDays = workingDays;
+    company->maxHours = maxHours;
+
+    if (checkCompanyExist(companyName) == NULL)
+    {
+        setCompanyObjectDetails(company);
+        companyList.push_back(company);
+    }
+    else
+    {
+        setCompanyObjectDetails(checkCompanyExist(companyName));
+    }
+}
+
+int main()
+{
+    string companyName;
     bool endKey = true;
     while (endKey)
     {
         int choice;
-        cout << "1: Enter new company details 2: Sort by montly wage 3: Employee wage per hour=50 4: Exit" << endl;
+        cout << "1: Enter new company details  3: Employee wage per hour=50  4: Exit  5: View Company Total Wage" << endl;
         cin >> choice;
-
         switch (choice)
         {
         case 1:
-            cout << "Enter the details of the company" << endl;
-            cout << "Enter the name of company" << endl;
-            cin >> companyName;
-
-            if (checkCompanyExist(companyName) != NULL)
-            {
-                cout << "Company already present" << endl;
-                break;
-            }
-
-            cout << "Enter the wage per hours of company" << endl;
-            cin >> rate;
-            cout << "Enter the working day of company" << endl;
-            cin >> workingDays;
-            cout << "Enter the max hours of company" << endl;
-            cin >> maxHours;
-
-            Company *company;
-            company = new Company;
-            company->companyName = companyName;
-            company->wagePerHour = rate;
-            company->workingDays = workingDays;
-            company->maxHours = maxHours;
-
-            if (checkCompanyExist(companyName) == NULL)
-            {
-                setCompanyObjectDetails(company);
-                companyList.push_back(company);
-            }
-            else
-            {
-                setCompanyObjectDetails(checkCompanyExist(companyName));
-            }
+            getCompanyDetails();
             break;
         case 4:
             endKey = false;
+            break;
+        case 5:
+            cout << "Enter company name " << endl;
+            cin >> companyName;
+            getTotalWageCompany(companyName);
             break;
         default:
             cout << "Invalid Input" << endl;
